@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Country {
+  country_id String @id @unique // Two-letter country code
+  name       String
+  iso_code   String // Three-letter ISO code
+
+  Data Data[] // Relationship to 'Data' table
+}
+
+model Indicator {
+  indicator_id String @id @unique // Primary key for the indicator
+
+  Data Data[] // Relationship to 'Data' table
+}
+
+model Data {
+  id           Int      @id @default(autoincrement())
+  country_id   String  @unique // Two-letter country code
+
+  indicator_id String  @unique // Foreign key to indicator
+  value        Float    // Assuming the value is numeric (like a statistic or rate)
+  year         Int
+
+  // Foreign Key Relationships
+  Country   Country   @relation(fields: [country_id], references: [country_id], onDelete: Cascade)
+  Indicator Indicator @relation(fields: [indicator_id], references: [indicator_id], onDelete: Cascade)
+}

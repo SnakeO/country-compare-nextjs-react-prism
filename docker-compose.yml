@@ -1,0 +1,16 @@
+services:
+  app:
+    # Build the Docker image using the Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Expose the container's port 3000 to the host
+    ports:
+      - "3000:3000"
+    # Define the environment variables used by Prisma and Next.js
+    environment:
+      - DATABASE_URL=file:/app/db/dev.db
+    # Command to start the Next.js production server
+    command: npm start
+    # Set a restart policy for the container (optional)
+    restart: unless-stopped

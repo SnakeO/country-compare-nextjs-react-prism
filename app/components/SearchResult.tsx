@@ -13,14 +13,8 @@ interface SearchResultProps {
 export const SearchResult: React.FC<SearchResultProps> = ({ country, onClick } : SearchResultProps) => {
 
   // Determine background color based on group
-  const backgroundColor =
-    country.group === 0
-      ? "bg-gray-200"
-      : country.group === 1
-        ? "bg-blue-200"
-        : country.group === 2
-          ? "bg-red-200"
-          : "bg-white"; // Default background
+  const backgroundColors = ["bg-gray-200", "bg-blue-200", "bg-red-200"];
+  const backgroundColor = backgroundColors[country.group];
 
   return (
     <div className={`border rounded-md p-4 shadow-md flex-1 ${backgroundColor} hover:cursor-pointer select-none`}

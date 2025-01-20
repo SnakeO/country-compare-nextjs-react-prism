@@ -16,6 +16,6 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This application uses Next.js, React, Typescript, Tailwind, and Prism ORM.
+This application uses Next.js, React, Typescript, Tailwind, and Prisma ORM.
 
 ![image](https://github.com/user-attachments/assets/1f1471ff-be22-498e-bfa2-112bac66ddba)
